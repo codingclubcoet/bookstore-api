@@ -3,7 +3,7 @@ api for bookstore
 
 <h5>Run this application</h5>
 
-<span style="background-color: #FFFF00">python3 models.py</span>
+<span style="background-color: #FFFF00">python3 models.py</span><br/>
 <span style="background-color: #FFFF00">python3 app.py</span>
 
 <h5>Test the application</h5>
