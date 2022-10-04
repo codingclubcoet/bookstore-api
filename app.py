@@ -43,6 +43,9 @@ class ReaderSchema(ma.Schema):
         
 book_schema = BookSchema()
 books_schema = BookSchema(many=True)
+                  
+readr_schema = ReaderSchema()
+readrs_schema = ReadrSchema(many=True)
 
 @app.route('/')
 def home():
@@ -57,6 +60,14 @@ def add_book():
     db.session.add(new_book)
     db.session.commit()
     return book_schema.jsonify(new_book)
+                  
+def add_reader():
+    readr_name = request.json['reader_name']
+    readr_type = request.json['reader_type']
+    new_readr = Reader(readr_name, readr_type)
+    db.session.add(new_readr)
+    db.session.commit()
+    return reader_schema.jsonify(new_readr)
 
 @app.route('/books/all', methods=['GET'])
 def get_book():
