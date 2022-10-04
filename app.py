@@ -28,6 +28,19 @@ class BookSchema(ma.Schema):
     class Meta:
         fields = ('id', 'book', 'desc_book', 'price')
         
+class Reader(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    reader_name = db.Column(db.String(100))
+    reader_type = db.Column(db.String(100))
+    
+    def __init__(self, reader_name, reader_type):
+        self.reader_name = reader_name
+        self.reader_type = reader_type
+        
+class ReaderSchema(ma.Schema):
+    class Meta:
+        fields = (íd','reader_name','reader_type')
+        
 book_schema = BookSchema()
 books_schema = BookSchema(many=True)
 
