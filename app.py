@@ -60,14 +60,15 @@ def add_book():
     db.session.add(new_book)
     db.session.commit()
     return book_schema.jsonify(new_book)
-                  
+
+@app.route('/reader/all', methods=['GET'])
 def add_reader():
     readr_name = request.json['reader_name']
     readr_type = request.json['reader_type']
     new_readr = Reader(readr_name, readr_type)
     db.session.add(new_readr)
     db.session.commit()
-    return reader_schema.jsonify(new_readr)
+    return readr_schema.jsonify(new_readr)
 
 @app.route('/books/all', methods=['GET'])
 def get_book():
@@ -82,6 +83,15 @@ def delete_book(id):
     db.session.delete(book)
     db.session.commit()
     return book_schema.jsonify(book)
+
+
+@app.route('/reader/<int:id>', methods=['DELETE'])
+def delete_reader(id):
+    readr = Reader.query.get(id)
+    db.session.delete(readr)
+    db.session.commit()
+    return readr_schema.jsonify(readr)
+
 
 @app.route('/book/<id>', methods=['PUT'])
 def update_book(id):
